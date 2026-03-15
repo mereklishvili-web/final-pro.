@@ -1,0 +1,14 @@
+{
+  "validUser": {
+    "firstName": "გიორგი",
+    "email": "test_zootopia_123@gmail.com",
+    "personalId": "01024055667",
+    "phone": "555123456",
+    "password": "Password123!",
+    "confirmPassword": "Password123!"
+  },
+  "invalidLogin": {
+    "email": "wrong_user@test.ge",
+    "password": "WrongPassword123"
+  }
+}
