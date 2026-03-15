@@ -28,17 +28,17 @@
 
 // ავტორიზაციის Custom Command
 Cypress.Commands.add('login', (email, password) => {
-  // 1. ვიყენებთ წერტილს კლასისთვის: .iprof
+ 
   cy.get('.iprof').click({ force: true }); 
   
-  // 2. ვავსებთ მონაცემებს
+
   cy.get('input[name="login_email"]').type(email);
   cy.get('input[name="login_password"]').type(password);
   
-  // 3. ვაჭერთ შესვლის ღილაკს
+
   cy.get('.avtorization > .input-shablon > .form-button').click();
 });
-// რეგისტრაციის Custom Command
+
 Cypress.Commands.add('register', (user) => {
   cy.visit('https://testzootopia.loremipsum.ge/ka/register');
   cy.get('input[name="first_name"]').type(user.firstName);
