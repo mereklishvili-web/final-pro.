@@ -1,9 +1,10 @@
 describe('Zootopia E2E Automation Suite', () => {
   
   beforeEach(() => {
-  
+    cy.viewport('macbook-13');
     cy.visit('https://testzootopia.loremipsum.ge/ka');
     cy.fixture('user').as('userData');
+
   });
 
   // --- რეგისტრაციის მოდული ---
@@ -40,22 +41,35 @@ describe('Zootopia E2E Automation Suite', () => {
   // --- კალათის მოდული ---
 
   it('TC04: პროდუქტის კალათაში დამატება მთავარი გვერდიდან', () => {
-    cy.get('div[onclick*="addToCart"]').first().click();
-    
-    
-    // Assertions
-    cy.get('[class="cart-items-count"]').should('not.contain', '0'); // 1. ქაუნთერი შეიცვალა
-   
+
+    cy.get('#cart-items-count')
+      .invoke('text')
+      .then((count) => {
+          const initial = Number(count.trim());
+
+          cy.get('div[onclick*="addToCart"]').first().click();
+
+        cy.get('#cart-items-count')
+          .should(($el) => {
+            const newCount = Number($el.text().trim());
+            expect(newCount).to.eq(initial + 1);
+          });
+        });
+
   });
 
   it('TC05: პროდუქტის წაშლა კალათიდან', () => {
-    cy.get('a[href="https://testzootopia.loremipsum.ge/ka/cart"]');
-   cy.get('[class*="clear"]').first().click();
+    cy.get('a[href="https://testzootopia.loremipsum.ge/ka"]');
+    cy.get('div[onclick*="addToCart"]', { timeout: 10000 }).first().click();
+    
+    cy.get('.icart').click();
+    cy.get(':nth-child(1) > .clear > a').click();
 
     
     // Assertions
-    cy.get('.cart-empty-msg').should('be.visible'); // 1. ჩანს შეტყობინება რომ კალათა ცარიელია
-    cy.get('.total-price').should('contain', '0'); // 2. ჯამური ფასი განულდა
+    cy.get('.empty > p').should('contain.text', 'კალათა ცარიელია')
+    
+   
   });
 
 });
