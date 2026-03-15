@@ -1,0 +1,24 @@
+{
+  "name": "final-pro.",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/mereklishvili-web/final-pro.#readme",
+  "bugs": {
+    "url": "https://github.com/mereklishvili-web/final-pro./issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mereklishvili-web/final-pro..git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^15.11.0"
+  }
+}
